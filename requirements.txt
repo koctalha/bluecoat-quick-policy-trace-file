@@ -1,0 +1,5 @@
+paramiko
+requests
+argparse
+cryptography
+threading
