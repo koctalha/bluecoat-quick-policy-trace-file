@@ -101,9 +101,12 @@ def readCreds(x):
 
 def checkPyVersion():# Check python version
     if sys.version_info[0] < 3:
-        sys.exit(red("Upgrade Python Version"))
+        sys.exit(red("Upgrade Python to v3.9"))
     else:
-        green("Program Initializing...")
+        if sys.version_info[1] < 9:
+            sys.exit(red("Upgrade Python to v3.9"))
+        else:
+            print("Program initializing...")
 
 def is_valid_ipv4_address(address):
     try:
@@ -247,7 +250,18 @@ def sshPolicyDeploy(sshServer,sshUsername,sshPassword,enablePassword,traceisActi
 ####### Main Flow ###############################################################
 
 # arguments configuration
-descText = 'This is a test program. It demonstrates how to use the argparse module with a program description.'
+descText = """CLI tool for activating and downloading policy trace faster. \n
+\n
+1. Example Usage: \n
+python3 bluecoat_quick_policy_trace.py --pincode 1234 -proxy 172.16.22.21 -client 192.168.10.61 -username admin -password 'testPW' -enablePassword 'testePW' \n
+\n
+2. Credentials are going be stored encrypted with pincode under 'db.csv'. Script can be executable without credential parameters.\n
+python3 bluecoat_quick_policy_trace.py -pin 1234 -p 172.16.22.21 -c 192.168.10.61 \n
+\n
+3. During the first initialization, program will delete old trace files on ProxySG, and deploy policy trace command. \n
+\n
+4. During the second initialization, program will delete policy trace command from the ProxySG, and download the generated trace file.
+"""
 parser = argparse.ArgumentParser(description=descText)
 parser.add_argument("--pincode","-pin",help="Enter pincode to store credentials.")
 parser.add_argument("--proxy","-p",help="Enter proxy IP. Make sure it isn't pool IP.")
