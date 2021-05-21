@@ -23,4 +23,12 @@ python3 bluecoat_quick_policy_trace.py -pin 1234 -p 172.16.22.21 -c 192.168.10.6
 
 ## Known Issues
 
-1.  Sometimes, policy installation stops after the "inline policy local end-of-file" command. No negative impact has observed. After stopping program with "ctrl+c", program should be reinitialized.  
+1.  Sometimes, policy installation stops after the "inline policy local end-of-file" command. No negative impact has observed. After stopping program with "ctrl+c", program should be reinitialized. 
+
+## Roadmap
+
+1.	HTML viewer for trace files. 
+```bash
+Example source code:
+https://github.com/sethblack/python-seo-analyzer/blob/master/seoanalyzer/__main__.py
+``
